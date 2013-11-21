@@ -104,11 +104,11 @@ void S1Start()
 					"4. Take a fourth option." << std::endl;
 
 
-	int choice;
+	int S1choice;
 
-	std::cin >> choice;
+	std::cin >> S1choice;
 
-	switch (choice)
+	switch (S1choice)
 	{
 
 		case 1:	S1Give();
