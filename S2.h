@@ -9,11 +9,15 @@
 void S2Start();
 void S2Divide();
 int chance();
-void S2FLarge(int);
-void S2FSmall(int);
+void S2FLarge();
+void S2FSmall();
 void S2Suicide();
 void LargeStop();
 void S2Revolt();
+void S2Ignore();
+void S2Cry();
+void S2Kill();
+void S2End();
 
 
 #endif
