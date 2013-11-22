@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-
+//function for if Sniper option is chosen
 void S1Sniper()
 {
 	std::cout << "The sniper is unable to obtain a clear shot " <<
@@ -11,6 +11,7 @@ void S1Sniper()
 
 }
 
+//function for if Rush option is chosen
 void S1Rush()
 {
 	std::cout << "You and a small group of 10 others rush the building but are unable to stop the terrorist " <<
@@ -20,6 +21,7 @@ void S1Rush()
 
 }
 
+//function for if Destroy option is chosen
 void S1Destroy()
 {
 	std::cout << "You make the decision to destroy the building the terrorist is in.\n" <<
@@ -29,7 +31,7 @@ void S1Destroy()
 
 }
 
-
+//function for if give in option is chosen
 void S1Give()
 {
 	std::cout << "You give into the terrorist's demands, including the execution of the chosen person.\n" <<
@@ -38,7 +40,7 @@ void S1Give()
 
 }
 
-
+//function for ig kill option is chosen
 void S1Kill()
 {
 	std::cout << "How do you wish to kill?\n" <<
@@ -53,13 +55,13 @@ void S1Kill()
 	switch(ch)
 	{
 
-	case 1:	S1Sniper();
+	case 1:	S1Sniper(); //jump to sniper
 		break;
-	case 2:	S1Rush();
+	case 2:	S1Rush(); //jump to rush
 		break;
-	case 3:	S1Destroy();
+	case 3:	S1Destroy(); //jump to destroy
 		break;
-	default:
+	default: //if no defined option is chosen
 		std::cout << "The terrorist leans on the window to see what you are doing.\n" <<
 			"Due to faulty construction, the frame gives way and the terrorist plummets to his death.\n" <<
 			"Death Count: 0\n" <<
@@ -68,7 +70,7 @@ void S1Kill()
 
 }
 
-
+//function for if pass option is chosen
 void S1Pass()
 {
 	std::cout << "You allow someone else to make the decision for you.\n" <<
@@ -78,7 +80,7 @@ void S1Pass()
 
 }
 
-
+//function for if extra option is chosen (suicide option)
 void S1Fourth()
 {
 	std::cout << "You rage at the programming for this crappy scenario before turning your sidearm on yourself.\n" <<
@@ -87,11 +89,11 @@ void S1Fourth()
 					"Death Count: 1" << std::endl;
 }
 
-
+//beginning function
 void S1Start()
 {
 	std::cout << "Beginning Scneario 1: Terrorist Threat " << std::endl << std::endl;
-
+	//scenario description
 	std::cout << "A terrorist has planted bombs at various locations around the city.\n" <<
 					"He has barricaded himself inside a skyscraper containing 1,000 civilians.\n" <<
 					"The estimated loss of life if all bombs detonate is ~4,000 people. \n" <<
@@ -111,15 +113,15 @@ void S1Start()
 	switch (S1choice)
 	{
 
-		case 1:	S1Give();
+		case 1:	S1Give(); //jump to give in
 			break;
-		case 2:	S1Kill();
+		case 2:	S1Kill(); //jump to kill
 			break;
-		case 3: S1Pass();
+		case 3: S1Pass(); //jump to pass
 			break;
-		case 4: S1Fourth();
+		case 4: S1Fourth(); //jump to fourth (suicide)
 			break;
-		default:
+		default: //if no defined option is chosen
 			std::cout << "Your inability to make a decision has angered the terrorist.\n" <<
 				"Death Count: 4,000" << std::endl;
 

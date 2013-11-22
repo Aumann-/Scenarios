@@ -7,12 +7,13 @@ bool done = false;
 int large = 300;
 int small = 200;
 
+//final function for accumulator output
 void S2End()
 {
 	std::cout << "Death Count: " << death << std::endl;
 	done = true;
 }
-
+//function for ignore option
 void S2Ignore()
 {
 	std::cout << "You choose to ignore them, thinking they are bluffing.\n" <<
@@ -20,10 +21,11 @@ void S2Ignore()
 				"It is only after they remember you are the only one able to fix the boat.\n" <<
 				"At least its not your problem now...being dead and all.\n\n";
 
-	death += (large + small + 1);
-	S2End();
+	death += (large + small + 1); //add to death total
+	S2End(); //jump to end
 }
 
+//function for cry option
 void S2Cry()
 {
 	std::cout << "You starting sobbing in front of everyone for being so cruel when you only wanted to help.\n" <<
@@ -35,6 +37,7 @@ void S2Cry()
 	S2End();
 }
 
+//function for kill option
 void S2Kill()
 {
 	std::cout << "You decided to kill everyone on board the boat.\n" <<
@@ -46,7 +49,7 @@ void S2Kill()
 	small = 0;
 }
 
-
+//function for revolt random event
 void S2Revolt()
 {
 	std::cout << "The people on the smaller boat see you choosing to let them die\n " <<
@@ -62,13 +65,13 @@ void S2Revolt()
 
 	switch (choice)
 	{
-	case 1:	S2Ignore();
+	case 1:	S2Ignore(); //jump to ignore
 		break;
-	case 2:	S2Cry();
+	case 2:	S2Cry(); //jump to cry
 		break;
-	case 3:	S2Kill();
+	case 3:	S2Kill(); //jump to kill
 		break;
-	default:
+	default: //if no defined option is chosen
 		{
 		std::cout << "A WILD KRAKEN HAS APPEARED!\n" <<
 						"You briefly wonder as to the programmer's mental state\n" <<
@@ -82,7 +85,7 @@ void S2Revolt()
 
 
 
-
+//function for divide random event
 void S2Divide()
 {
 	divided = true;
@@ -98,18 +101,20 @@ void S2Divide()
 
 	std::cin >> choice;
 
+	//change current values to new values
 	large = 200;
 	small = 100;
 
 	switch(choice)
 	{
-	case 1: S2FLarge();
+	case 1: S2FLarge(); //jump to fix large
 		break;
-	case 2: S2FSmall();
+	case 2: S2FSmall(); //jump to fix small
 		break;
-	case 3: S2Suicide();
+	case 3: S2Suicide(); //jump to suicide
 		break;
 	default:
+		{
 		std::cout << "You start wondering where you life went wrong.\n" <<
 						"Maybe it was that time you decided boat fixing was a good idea.\n" <<
 						"Or maybe that time you climbed your school's computer building in a Batman costume.\n" <<
@@ -119,31 +124,32 @@ void S2Divide()
 						"Good luck you crazy freak.\n\n";
 		death += (small + large);
 		S2End();
+		}
 	}
 }
 
-
+//function to generate random number
 int chance()
 {
 	int t = rand() % 20;
 	return t;
 }
 
-
+//function for fix large
 void S2FLarge()
 {
-	if (!done)
+	if (!done) //check end flag
 	{
 		int c;
 		std::cout << "You decide to fix the larger boat, dooming " << small << " people.\n\n";
 
-		if (!divided && !done)
+		if (!divided) //check divide flag
 		{
 
 			c = chance();
 
 			if (c % 4 == 0)
-				S2Revolt();
+				S2Revolt(); //jump to revolt
 
 			if (!done)
 			{
@@ -156,9 +162,9 @@ void S2FLarge()
 				if (c % 4 == 0)
 				{
 					divided = true;
-					S2Divide();
+					S2Divide();//jump to divide
 				}
-				else
+				else //if divide random event does not happen
 				{
 					std::cout << "After sailing for a bit longer you realize there is not enough food left.\n" <<
 									"The resulting riot leads to all but you dead or dismembered.\n" <<
@@ -170,7 +176,7 @@ void S2FLarge()
 				}
 			}
 		}
-		else
+		else //if already divided
 		{
 			std::cout << "There is not enough alcohol in the world to help you now.\n" <<
 							"You terrible, terrible person.\n\n";
@@ -180,6 +186,7 @@ void S2FLarge()
 	}
 }
 
+//function for fix small
 void S2FSmall()
 {
 	std::cout << "You decide to fix the smaller boat, dooming " << large << " people.\n" <<
@@ -192,22 +199,34 @@ void S2FSmall()
 	S2End();
 }
 
+//function for suicide
 void S2Suicide()
 {
+	if (!divided) //if first is first option chosen
+	{
 	std::cout << "Unable to take the burden of deciding who lives and who dies, you jump overboard and drown.\n" <<
 					"As you were the only one able to fix the boats, everyone else dies as well.\n\n" <<
 					"You selfish bastard.\n\n";
 	death += (large + small + 1);
 	S2End();
+	}
+
+	else //if already divided
+	{
+		std::cout << "After killing so many people, now you decide to quit?\n" <<
+					"Are you serious?\n" <<
+					"Well I won't let you. In fact, let's play a different game." << std::endl;
+		S2BadEnd();
+	}
 }
 
-
+//beginning function
 void S2Start()
 {
-
+	//seed random generator
 	srand(time(NULL));
 	std::cout << "Beginnning Scenario 2: Nice Boats\n\n" << std::endl;
-
+	//scenario description
 	std::cout << "Two boats are sailing across the ocean.\n" <<
 					"There are a total of 500 people, 300 on one boat, 200 on the other and yourself.\n" <<
 					"The only way to move between the boats is a small raft capable of carrying only one person.\n" <<
@@ -222,19 +241,137 @@ void S2Start()
 
 	switch(choice)
 	{
-	case 1: S2FLarge();
+	case 1: S2FLarge();//jump to fix large
 		break;
-	case 2: S2FSmall();
+	case 2: S2FSmall();//jump to fix small
 		break;
-	case 3: S2Suicide();
+	case 3: S2Suicide();//jump to suicide
 		break;
-	default:
+	case 10: S2Divide(); //jump to divide (for debug)
+		break;
+	default://if no defined option is chosen
 		std::cout << "Your hesitation has angered Broseidon, Lord of the Brocean!\n" <<
 						"He destroys both boats with a massive Browave!\n" << std::endl;
 		death += (large + small + 1);
 		S2End();
 
 
+	}
+
+}
+
+//bad end function. ONly possible to reach by choosing suicide option after divide
+void S2BadEnd()
+{
+	std::cout << "\n\n\n\n\nYou find yourself in a room.\n\n" <<
+				"What do you do?\n" <<
+				"1. Look around\n" <<
+				"2. Scream\n" <<
+				"3. Beg for mercy\n\n";
+
+	std::cin >> choice;
+
+	switch (choice)
+	{
+	case 1:
+		{
+			std::cout << "You decide to look around\n" <<
+						"Well you could do that, but I've decided to remove your eyes.\n\n" <<
+						"..........................................\n\n" <<
+						"Ah, let's just take your entire head, shall we.\n" <<
+						"\n\nYOU ARE DEAD\n\n";
+			done = true;
+			return;
+		}
+
+	case 2:
+		{
+			std::cout << "You scream and scream until your throat is raw.\n" <<
+						"Too bad no one can hear you.\n" <<
+						"You are going to stay here, screaming, for the rest of your miserable life.\n" <<
+						"Have fun. HAHAHAHAHAHAHAHAHAHAHA\n\n" <<
+						"YOU ARE DEAD\n\n";
+			done = true;
+			return;
+		}
+
+	case 3:
+		{
+			std::cout << "You decide to beg for your life.\n" <<
+							"But, I thought you wanted to die?\n" <<
+							"Afterall, the only way to get to this path was to choose Suicide.\n" <<
+							"Did you change your mind?\n" <<
+							"Well we can't have that, now can we?\n" <<
+							"You have to keep to your word.\n" <<
+							"If you really want out though, there is a quick way.\n" <<
+							"There is a button in front of you, push it.\n\n";
+			S2Button();
+			break;
+
+		}
+
+	default:
+		{
+			std::cout << "Try to follow instructions please\n";
+			S2BadEnd(); //recall bad end
+			break;
+		}
+
+	}
+
+}
+
+//function for pressing button. reachable by choosing option three in bad end function
+void S2Button()
+{
+	std::cout << "1. Push the button\n" <<
+					"2. Push the button\n" <<
+					"3. Push the button\n";
+
+	std::cin >> choice;
+
+	switch (choice)
+	{
+	case 1:
+		{
+		std::cout << "Unfortunately, this button is picky.\n" <<
+					"How about you try again.\n\n";
+		S2Button();
+		break;
+		}
+	case 2:
+		{
+		std::cout << "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!\n" <<
+						"Oops, wrong button, lets try again without the tiny bees\n\n";
+		S2Button();
+		break;
+		}
+	case 3:
+		{
+		std::cout << "\n\n*Drip* *Drip* *Drip*\n\n" <<
+					"Now isn't that better?\n" <<
+					"You didn't need those pesky legs anyway.\n" <<
+					"Just look at how much weight you've lost.\n" <<
+					"Now just quietly bleed to death, would you?\n\n" <<
+					"YOU ARE DEAD\n\n";
+
+		done = true;
+		return;
+		}
+	default:
+		{
+		std::cout << "You decide not to press the button.\n" <<
+						"Since you dislike pressing buttons so much\n" <<
+						"I'll simply remove your ability to do so.\n" <<
+						"What good are arms anyway?\n" <<
+						"Oh, stop screaming. That was a different option.\n" <<
+						"If you wanted to do that you should have picked it instead.\n" <<
+						"See ya, stumpy.\n\n" <<
+						"YOU ARE DEAD\n\n";
+
+		done = true;
+		return;
+		}
 	}
 
 }

@@ -12,13 +12,14 @@ int main()
 	cout << "Let's go through a few scenarios and see how you do." << endl;
 	
 	
-	//S1Start();
-	
+	/*S1Start();
+	cin.ignore();
+	cin.ignore();*/
 	cout << string(50, '\n');
 	
 	S2Start();
 
-	cout << "\n\n\n\BYE" << endl;
+	cout << "\n\n\nBYE" << endl;
 	cin.ignore();
 	cin.ignore();
 	return 0;

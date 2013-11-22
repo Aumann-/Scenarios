@@ -20,4 +20,8 @@ void S2Kill();
 void S2End();
 
 
+void S2BadEnd();
+void S2Button();
+
+
 #endif
